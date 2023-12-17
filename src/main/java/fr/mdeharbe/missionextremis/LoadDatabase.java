@@ -12,9 +12,12 @@ public class LoadDatabase {
     CommandLineRunner init(MissionRepository repository) {
         return args -> {
             Flux.just(
-                    new Mission("Allez le premier"),
-                    new Mission("et puis un autre"),
-                    new Mission("mais c'est tout"))
+                    new Mission("Si un regard pouvait tuer"),
+                    new Mission("Les fous de Gotheim"),
+                    new Mission("Coeur de verre"),
+                    new Mission("Appât à sorcier"),
+                    new Mission("Les coupables"),
+                    new Mission("Massacre à Spittlefeld"))
                     .flatMap(repository::save)
                     .subscribe(System.out::println);
         };

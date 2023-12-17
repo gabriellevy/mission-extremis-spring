@@ -5,16 +5,16 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
 @RestController
-public class ChapterController {
+public class MissionController {
 
-    private final ChapterRepository repository;
+    private final MissionRepository repository;
 
-    public ChapterController(ChapterRepository repository) {
+    public MissionController(MissionRepository repository) {
         this.repository = repository;
     }
 
-    @GetMapping("/chapters")
-    public Flux<Chapter> listing() {
+    @GetMapping("/missions")
+    public Flux<Mission> listing() {
         return repository.findAll();
     }
 }

@@ -9,12 +9,12 @@ import reactor.core.publisher.Flux;
 public class LoadDatabase {
 
     @Bean
-    CommandLineRunner init(ChapterRepository repository) {
+    CommandLineRunner init(MissionRepository repository) {
         return args -> {
             Flux.just(
-                    new Chapter("Allez le premier"),
-                    new Chapter("et puis un autre"),
-                    new Chapter("mais c'est tout"))
+                    new Mission("Allez le premier"),
+                    new Mission("et puis un autre"),
+                    new Mission("mais c'est tout"))
                     .flatMap(repository::save)
                     .subscribe(System.out::println);
         };

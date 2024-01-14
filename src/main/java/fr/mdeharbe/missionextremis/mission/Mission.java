@@ -1,4 +1,4 @@
-package fr.mdeharbe.missionextremis;
+package fr.mdeharbe.missionextremis.mission;
 
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 @Data
 @Document
-public class Equipe {
+public class Mission {
 
     @org.springframework.data.annotation.Id
     private String id;
     private String name;
-    private ArrayList<Perso> persos;
+    private ArrayList<Scene> scenes;
 
-    public Equipe(String name, ArrayList<Perso> persos) {
+    public Mission(String name, ArrayList<Scene> scenes) {
         this.name = name;
-        this.persos = persos;
+        this.scenes = scenes;
     }
 }

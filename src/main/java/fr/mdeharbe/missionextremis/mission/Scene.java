@@ -1,17 +1,17 @@
-package fr.mdeharbe.missionextremis;
+package fr.mdeharbe.missionextremis.mission;
 
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @Document
-public class Perso {
+public class Scene {
 
     @org.springframework.data.annotation.Id
     private String id;
     private String name;
 
-    public Perso(String name) {
+    public Scene(String name) {
         this.name = name;
     }
 }

@@ -1,4 +1,4 @@
-package fr.mdeharbe.missionextremis;
+package fr.mdeharbe.missionextremis.equipe;
 
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 

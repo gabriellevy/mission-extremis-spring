@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class HomeController {
 
     @GetMapping
-    public String greeting(@RequestParam(required = false, defaultValue = "") String name) {
-        return name.isEmpty() ? "Hey!" : "Hey, " + name + "!";
+    public String choixMission(@RequestParam(required = false, defaultValue = "") String idMission) {
+        return idMission.isEmpty() ?
+                "Il faut choisir une mission (???)!" :
+                "Lancement de la mission, " + idMission + "!";
     }
 }

@@ -1,4 +1,4 @@
-package fr.mdeharbe.missionextremis;
+package fr.mdeharbe.missionextremis.mission;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -14,6 +14,7 @@ public class RemplirMissionBdd {
     @Bean({"initMissionBdd"})
     CommandLineRunner init(MissionRepository repository) {
         return args -> {
+            repository.deleteAll();
             Flux.just( // A FAIRE : devrait toujours vérifier que les éléments n'existent pas déjà avant de les recréer (ou tout vider et c'est tout)
                             new Mission("Si un regard pouvait tuer",
                                     new ArrayList<>(Arrays.asList(
@@ -31,5 +32,4 @@ public class RemplirMissionBdd {
                     .subscribe(System.out::println);
         };
     }
-
 }

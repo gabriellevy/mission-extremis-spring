@@ -13,10 +13,12 @@ public class MissionController {
 
     private final MissionRepository missionRepo;
     private final EquipeRepository equipeRepo;
+    private final MissionService missionService;
 
-    public MissionController(MissionRepository missionRepo, EquipeRepository equipeRepo) {
+    public MissionController(MissionRepository missionRepo, EquipeRepository equipeRepo, MissionService missionService) {
         this.missionRepo = missionRepo;
         this.equipeRepo = equipeRepo;
+        this.missionService = missionService;
     }
 
     // affichage des missions (+ leur choix ?)
@@ -27,10 +29,10 @@ public class MissionController {
 
     // exécuter une mission avec une équipe particulière ??
     @GetMapping("/mission")
-    public Mono<Equipe> listing(@RequestParam(required = true) String idMission,
+    public String listing(@RequestParam(required = true) String idMission,
                                  @RequestParam(required = true) String idEquipe) {
         Mono<Mission> mission = missionRepo.findById(idMission);
         Mono<Equipe> equipe = equipeRepo.findById(idEquipe);
-        return mission.flux().then(equipe);
+        return missionService.executerMission(mission,equipe);
     }
 }

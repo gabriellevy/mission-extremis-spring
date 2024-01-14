@@ -6,8 +6,6 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class MissionService {
-
-
     public String executerMission(Mono<Mission> mission, Mono<Equipe> equipe) {
         return "L'équipe " +
                 equipe.block().getName() +

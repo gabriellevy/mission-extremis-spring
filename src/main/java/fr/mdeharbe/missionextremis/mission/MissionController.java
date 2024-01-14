@@ -27,7 +27,7 @@ public class MissionController {
         return missionRepo.findAll();
     }
 
-    // exécuter une mission avec une équipe particulière ??
+    // exécuter une mission avec une équipe particulière
     @GetMapping("/mission")
     public String listing(@RequestParam(required = true) String idMission,
                                  @RequestParam(required = true) String idEquipe) {

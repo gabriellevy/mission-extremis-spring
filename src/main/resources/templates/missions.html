@@ -1,0 +1,46 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Missions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1> Missions </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:if="${missions.empty}">
+                        <td colspan="3"> Aucune mission disponible</td>
+                    </tr>
+                    <tr th:each="mission : ${missions}">
+                        <td>
+                            <span th:text="${mission.id}"> Id </span>
+                        </td>
+                        <td>
+                            <span th:text="${mission.name}"> Name </span>
+                        </td>
+                        <td>
+                            <a th:href="@{/preparer-mission/{id}(id=${mission.id})}">
+                                <button type="button" class="btn btn-primary">Lancer la mission</button>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -17,10 +17,10 @@ import java.util.ArrayList;
 public class Mission {
 
     @org.springframework.data.annotation.Id
-    private String id;
+    public String id;
     @NotBlank(message="La mission doit avoir un nom.")
-    private String name;
-    private ArrayList<Scene> scenes;
+    public String name;
+    public ArrayList<Scene> scenes;
 
     public Mission(String name, ArrayList<Scene> scenes) {
         this.name = name;

@@ -19,6 +19,6 @@ public class MissionController {
 
     @GetMapping("/missions")
     public Flux<Mission> getAllMissions() {
-        return missionService.getAllMissions();
+        return missionService.getAllMissionsFlux();
     }
 }

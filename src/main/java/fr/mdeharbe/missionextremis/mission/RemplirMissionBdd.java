@@ -12,10 +12,10 @@ import java.util.Arrays;
 public class RemplirMissionBdd {
 
     @Bean({"initMissionBdd"})
-    CommandLineRunner init(MissionRepository repository) {
+    CommandLineRunner init(MissionService missionService) {
         return args -> {
-            repository.deleteAll();
-            Flux.just( // A FAIRE : devrait toujours vérifier que les éléments n'existent pas déjà avant de les recréer (ou tout vider et c'est tout)
+            missionService.deleteAllMissions(); // ne semble pas fonctionner...
+            Flux.just(
                             new Mission("Si un regard pouvait tuer",
                                     new ArrayList<>(Arrays.asList(
                                             new Scene("Bienvenue à bord du trafandir"),
@@ -28,7 +28,7 @@ public class RemplirMissionBdd {
                             new Mission("Appât à sorcier", new ArrayList<>()),
                             new Mission("Les coupables", new ArrayList<>()),
                             new Mission("Massacre à Spittlefeld", new ArrayList<>()))
-                    .flatMap(repository::save)
+                    .flatMap(missionService::saveMission)
                     .subscribe(System.out::println);
         };
     }

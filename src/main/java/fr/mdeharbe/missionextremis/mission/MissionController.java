@@ -1,38 +1,24 @@
 package fr.mdeharbe.missionextremis.mission;
 
-import fr.mdeharbe.missionextremis.equipe.Equipe;
-import fr.mdeharbe.missionextremis.equipe.EquipeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
+/**
+ * controller pour l'affichage des données brutes
+ */
 @RestController
 public class MissionController {
+    private MissionService missionService;
 
-    private final MissionRepository missionRepo;
-    private final EquipeRepository equipeRepo;
-    private final MissionService missionService;
-
-    public MissionController(MissionRepository missionRepo, EquipeRepository equipeRepo, MissionService missionService) {
-        this.missionRepo = missionRepo;
-        this.equipeRepo = equipeRepo;
-        this.missionService = missionService;
+    @Autowired
+    public MissionController(MissionService reservationService) {
+        this.missionService = reservationService;
     }
 
-    // affichage des missions (+ leur choix ?)
     @GetMapping("/missions")
-    public Flux<Mission> listing() {
-        return missionRepo.findAll();
-    }
-
-    // exécuter une mission avec une équipe particulière
-    @GetMapping("/mission")
-    public String listing(@RequestParam(required = true) String idMission,
-                                 @RequestParam(required = true) String idEquipe) {
-        Mono<Mission> mission = missionRepo.findById(idMission);
-        Mono<Equipe> equipe = equipeRepo.findById(idEquipe);
-        return missionService.executerMission(mission,equipe);
+    public Flux<Mission> getAllMissions() {
+        return missionService.getAllMissions();
     }
 }

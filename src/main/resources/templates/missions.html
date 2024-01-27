@@ -15,7 +15,6 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>Id</th>
                         <th>Nom</th>
                         <th>Action</th>
                     </tr>
@@ -25,9 +24,6 @@
                         <td colspan="3"> Aucune mission disponible</td>
                     </tr>
                     <tr th:each="mission : ${missions}">
-                        <td>
-                            <span th:text="${mission.id}"> Id </span>
-                        </td>
                         <td>
                             <span th:text="${mission.name}"> Name </span>
                         </td>

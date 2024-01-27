@@ -40,9 +40,7 @@ public class MissionService {
         return repo.findById(id);
     }
     public String executerMission(Mono<Mission> mission, Mono<Equipe> equipe) {
-        return "L'équipe " +
-                Objects.requireNonNull(equipe.block()).getName() +
-                " se lance dans la mission " +
+        return "L'équipe est envoyée remplir la mission " +
                 Objects.requireNonNull(mission.block()).getName();
     }
 }

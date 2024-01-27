@@ -1,4 +1,4 @@
-package fr.mdeharbe.missionextremis.equipe;
+package fr.mdeharbe.missionextremis.equipe.perso;
 
 import lombok.Data;
 import org.springframework.data.mongodb.core.mapping.Document;

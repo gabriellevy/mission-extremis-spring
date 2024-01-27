@@ -1,20 +1,22 @@
 package fr.mdeharbe.missionextremis.equipe;
 
+import fr.mdeharbe.missionextremis.equipe.perso.Perso;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 
 @Data
-@Document
+@Document(collection = "equipes")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Equipe {
 
     @org.springframework.data.annotation.Id
     private String id;
-    private String name;
     private ArrayList<Perso> persos;
 
-    public Equipe(String name, ArrayList<Perso> persos) {
-        this.name = name;
-        this.persos = persos;
-    }
 }

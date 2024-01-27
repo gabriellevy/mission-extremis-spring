@@ -18,11 +18,8 @@ public class PersoService {
         return repo.save(perso);
     }
 
-    public Flux<Perso> getAllPersosFlux(){
+    public Flux<Perso> getAllPersos(){
         return repo.findAll();
-    }
-    public Iterable<Perso> getAllPersos(){
-        return repo.findAll().toIterable();
     }
 
     public void deleteAllPersos(){

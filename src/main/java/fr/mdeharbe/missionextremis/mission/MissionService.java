@@ -21,11 +21,8 @@ public class MissionService {
         return repo.save(mission);
     }
 
-    public Flux<Mission> getAllMissionsFlux(){
+    public Flux<Mission> getAllMissions(){
         return repo.findAll();
-    }
-    public Iterable<Mission> getAllMissions(){
-        return repo.findAll().toIterable();
     }
 
     public void deleteAllMissions(){

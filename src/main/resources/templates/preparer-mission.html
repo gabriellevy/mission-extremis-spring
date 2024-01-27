@@ -7,13 +7,39 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1> Préparation de mission </h1>
+            <h1>Sélection de l'équipe</h1>
         </div>
     </div>
     <div class="row">
         Préparation de la mission <span th:text="${mission.name}"> Name </span>.
-        <br/>Sélection de l'équipe :
+    </div>
 
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:if="${persos.empty}">
+                    <td colspan="2"> Aucun personnage disponible</td>
+                </tr>
+                <tr th:each="perso : ${persos}">
+                    <td>
+                        <span th:text="${perso.name}"> Nom </span>
+                    </td>
+                    <td>
+                        <a th:href="@{/ajouter-perso/{id}(id=${mission.id})/{idPerso}(idPerso=${perso.id})}">
+                            <button type="button" class="btn btn-primary">Ajouter à l'équipe</button>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
 </body>

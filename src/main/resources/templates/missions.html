@@ -25,7 +25,7 @@
                     </tr>
                     <tr th:each="mission : ${missions}">
                         <td>
-                            <span th:text="${mission.name}"> Name </span>
+                            <span th:text="${mission.name}"> Nom </span>
                         </td>
                         <td>
                             <a th:href="@{/preparer-mission/{id}(id=${mission.id})}">

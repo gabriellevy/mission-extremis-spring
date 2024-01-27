@@ -25,6 +25,13 @@ public class PersoService {
         }).flatMap(repo::save)
                 .subscribe(System.out::println);
     }
+    public void deSelectionnePerso(String idPerso){
+        findPersoById(idPerso).map(perso -> {
+            perso.setSelectionne(false);
+            return perso;
+        }).flatMap(repo::save)
+                .subscribe(System.out::println);
+    }
 
     public Flux<Perso> getAllPersos(){
         return repo.findAll();

@@ -26,6 +26,11 @@
                     <td>
                         <span th:text="${perso.nom}"> Nom </span>
                     </td>
+                    <td>
+                        <a th:href="@{/retirer-perso/mission/{idMission}/perso/{idPerso}(idMission=${mission.id}, idPerso=${perso.id})}">
+                            <button type="button" class="btn btn-primary">Retirer de l'équipe</button>
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
             </table>

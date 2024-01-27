@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import reactor.core.publisher.Mono;
 
+import static fr.mdeharbe.missionextremis.ReglesEtConstantes.MAX_PERSO_NUM;
+
 /**
  * controller servant à l'affichage
  */
@@ -31,10 +33,26 @@ public class MissionThymeleafController {
 
     // préparer l'exécution d'une mission avec une équipe particulière
     @GetMapping(value = {"/ajouter-perso/mission/{idMission}/perso/{idPerso}", "/ajouter-perso"})
-    public Mono<String> executerMission(@PathVariable("idMission") String idMission,
+    public Mono<String> ajouterPerso(@PathVariable("idMission") String idMission,
                                         @PathVariable("idPerso") String idPerso,
                                         Model model) {
-        persoService.selectionnePerso(idPerso);
+        return persoService.getAllPersosSelectionnes()
+                .collectList()
+                .flatMap(
+                    persoSel -> {
+                        if (persoSel.size() < MAX_PERSO_NUM) {
+                            persoService.selectionnePerso(idPerso);
+                        }
+                        addBaseDataToModels(idMission, model);
+                        return Mono.just("preparer-mission");
+                        });
+    }
+
+    @GetMapping(value = {"/retirer-perso/mission/{idMission}/perso/{idPerso}", "/retirer-perso"})
+    public Mono<String> retirerPerso(@PathVariable("idMission") String idMission,
+                                        @PathVariable("idPerso") String idPerso,
+                                        Model model) {
+        persoService.deSelectionnePerso(idPerso);
         addBaseDataToModels(idMission, model);
         return Mono.just("preparer-mission");
     }

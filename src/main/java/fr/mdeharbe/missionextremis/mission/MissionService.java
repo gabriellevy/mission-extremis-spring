@@ -38,6 +38,6 @@ public class MissionService {
     }
     public String executerMission(Mono<Mission> mission, Mono<Equipe> equipe) {
         return "L'équipe est envoyée remplir la mission " +
-                Objects.requireNonNull(mission.block()).getName();
+                Objects.requireNonNull(mission.block()).getNom();
     }
 }

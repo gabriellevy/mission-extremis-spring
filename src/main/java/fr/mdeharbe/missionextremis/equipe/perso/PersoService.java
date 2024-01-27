@@ -18,8 +18,22 @@ public class PersoService {
         return repo.save(perso);
     }
 
+    public void selectionnePerso(String idPerso){
+        findPersoById(idPerso).map(perso -> {
+            perso.setSelectionne(true);
+            return perso;
+        }).flatMap(repo::save)
+                .subscribe(System.out::println);
+    }
+
     public Flux<Perso> getAllPersos(){
         return repo.findAll();
+    }
+    public Flux<Perso> getAllPersosDispos(){
+        return repo.findAll().filter(perso -> !perso.getSelectionne());
+    }
+    public Flux<Perso> getAllPersosSelectionnes(){
+        return repo.findAll().filter(Perso::getSelectionne);
     }
 
     public void deleteAllPersos(){

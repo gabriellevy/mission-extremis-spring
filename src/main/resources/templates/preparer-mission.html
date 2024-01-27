@@ -12,28 +12,40 @@
         </div>
     </div>
     <div class="row">
-        Préparation de la mission <span th:text="${mission.name}"> Name </span>.
+        Préparation de la mission <span th:text="${mission.nom}"> Nom </span>.
     </div>
-
+    <h3>Équipe</h3>
     <div class="row">
         <div class="col-md-6">
             <table class="table">
-                <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
                 <tbody>
-                <tr th:if="${persos.empty}">
+                <tr th:if="${persosSelectionnes.empty}">
+                    <td colspan="2"> Aucun personnage sélectionné</td>
+                </tr>
+                <tr th:each="perso : ${persosSelectionnes}">
+                    <td>
+                        <span th:text="${perso.nom}"> Nom </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <h3>Personnages sélectionnables</h3>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table">
+                <tbody>
+                <tr th:if="${persosDispos.empty}">
                     <td colspan="2"> Aucun personnage disponible</td>
                 </tr>
-                <tr th:each="perso : ${persos}">
+                <tr th:each="perso : ${persosDispos}">
                     <td>
-                        <span th:text="${perso.name}"> Nom </span>
+                        <span th:text="${perso.nom}"> Nom </span>
                     </td>
                     <td>
-                        <a th:href="@{/ajouter-perso/{id}(id=${mission.id})/{idPerso}(idPerso=${perso.id})}">
+                        <a th:href="@{/ajouter-perso/mission/{idMission}/perso/{idPerso}(idMission=${mission.id}, idPerso=${perso.id})}">
                             <button type="button" class="btn btn-primary">Ajouter à l'équipe</button>
                         </a>
                     </td>

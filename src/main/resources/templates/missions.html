@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 <head>
     <meta charset="utf-8">
     <title>Missions</title>
@@ -26,7 +26,7 @@
                     </tr>
                     <tr th:each="mission : ${missions}">
                         <td>
-                            <span th:text="${mission.name}"> Nom </span>
+                            <span th:text="${mission.nom}"> Nom </span>
                         </td>
                         <td>
                             <a th:href="@{/preparer-mission/{id}(id=${mission.id})}">

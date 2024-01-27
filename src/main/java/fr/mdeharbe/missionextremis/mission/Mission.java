@@ -19,11 +19,11 @@ public class Mission {
     @org.springframework.data.annotation.Id
     public String id;
     @NotBlank(message="La mission doit avoir un nom.")
-    public String name;
+    public String nom;
     public ArrayList<Scene> scenes;
 
-    public Mission(String name, ArrayList<Scene> scenes) {
-        this.name = name;
+    public Mission(String nom, ArrayList<Scene> scenes) {
+        this.nom = nom;
         this.scenes = scenes;
     }
 }

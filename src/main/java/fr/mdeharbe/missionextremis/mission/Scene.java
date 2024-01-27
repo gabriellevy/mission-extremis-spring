@@ -9,9 +9,9 @@ public class Scene {
 
     @org.springframework.data.annotation.Id
     private String id;
-    private String name;
+    private String nom;
 
-    public Scene(String name) {
-        this.name = name;
+    public Scene(String nom) {
+        this.nom = nom;
     }
 }

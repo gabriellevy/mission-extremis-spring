@@ -2,19 +2,27 @@ package fr.mdeharbe.missionextremis.equipe.perso;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import reactor.core.publisher.Flux;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 public class RemplirPersosBdd {
+
+    /**
+     * revide et recrée la bdd à chaque lancement
+     * (un peu bourrin mais pratique pour les tests, on va laisser comme ça pour l'instant)
+     */
     @Bean({"initPersosBdd"})
-    CommandLineRunner init(PersoService persoService) {
-        persoService.deleteAllPersos(); // ne semble pas fonctionner...
+    CommandLineRunner init(MongoOperations mongoOperations) {
         return args -> {
-            Flux.just(new Perso("Werner Murrmann", false),
-                      new Perso("L'onête Ottokar Johanson", false))
-                    .flatMap(persoService::savePerso)
-                    .subscribe(System.out::println);
+            mongoOperations.dropCollection(Perso.class);
+
+            mongoOperations.insert(new Perso("Werner Murrmann", false));
+            mongoOperations.insert(new Perso("L'onête Ottokar Johanson", false));
+
+            mongoOperations.findAll(Perso.class).forEach(perso -> {
+                System.out.println(perso.toString());
+            });
         };
     }
 }

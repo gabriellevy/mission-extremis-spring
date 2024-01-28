@@ -18,19 +18,17 @@ public class PersoService {
         return repo.save(perso);
     }
 
-    public void selectionnePerso(String idPerso){
-        findPersoById(idPerso).map(perso -> {
+    public Mono<Perso> selectionnePerso(String idPerso){
+        return findPersoById(idPerso).map(perso -> {
             perso.setSelectionne(true);
             return perso;
-        }).flatMap(repo::save)
-                .subscribe(System.out::println);
+        }).flatMap(repo::save);
     }
-    public void deSelectionnePerso(String idPerso){
-        findPersoById(idPerso).map(perso -> {
+    public Mono<Perso> deSelectionnePerso(String idPerso){
+        return findPersoById(idPerso).map(perso -> {
             perso.setSelectionne(false);
             return perso;
-        }).flatMap(repo::save)
-                .subscribe(System.out::println);
+        }).flatMap(repo::save);
     }
 
     public Flux<Perso> getAllPersos(){

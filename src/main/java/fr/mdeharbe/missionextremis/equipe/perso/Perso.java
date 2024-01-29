@@ -25,4 +25,9 @@ public class Perso {
         this.nom = nom;
         this.selectionne = selectionne;
     }
+
+    public Perso(String nom) {
+        this.nom = nom;
+        this.selectionne = false;
+    }
 }

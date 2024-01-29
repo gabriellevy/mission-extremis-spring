@@ -63,10 +63,18 @@ public class MissionThymeleafController {
 
     // exécution d'une mission avec m'équipe actuellement sélectionnée
     @GetMapping(value = {"/preparer-mission/{idMission}", "/preparer-mission"})
-    public Mono<String> executerMission(@PathVariable("idMission") String idMission,
+    public Mono<String> preparerMission(@PathVariable("idMission") String idMission,
                                   Model model) {
-        addBaseDataToModels(idMission, model);
-        return Mono.just("preparer-mission");
+        return addBaseDataToModels(idMission, model).
+                thenReturn("preparer-mission");
+    }
+
+    // exécution d'une mission avec l'équipe actuellement sélectionnée
+    @GetMapping(value = {"/executer-mission/mission/{idMission}", "/executer-mission"})
+    public Mono<String> executerMission(@PathVariable("idMission") String idMission,
+                                        Model model) {
+        return addBaseDataToModels(idMission, model).
+            thenReturn("executer-mission");
     }
 
     private Mono<Void> addBaseDataToModels(String idMission, Model model) {
@@ -74,6 +82,12 @@ public class MissionThymeleafController {
         model.addAttribute("mission", mission);
         model.addAttribute("persosDispos", persoService.getAllPersosDispos());
         model.addAttribute("persosSelectionnes", persoService.getAllPersosSelectionnes());
-        return Mono.empty();
+        return persoService.getAllPersosSelectionnes().collectList()
+                .flatMap(
+                        persoSel -> {
+                                model.addAttribute("selectionnables",
+                                        persoSel.size() < MAX_PERSO_NUM);
+                                return Mono.empty();
+                            });
     }
 }

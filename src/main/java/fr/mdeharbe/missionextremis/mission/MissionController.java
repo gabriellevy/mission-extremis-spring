@@ -13,8 +13,8 @@ public class MissionController {
     private MissionService missionService;
 
     @Autowired
-    public MissionController(MissionService reservationService) {
-        this.missionService = reservationService;
+    public MissionController(MissionService missionService) {
+        this.missionService = missionService;
     }
 
     @GetMapping("/missions")

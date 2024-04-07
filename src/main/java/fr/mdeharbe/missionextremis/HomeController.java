@@ -11,7 +11,7 @@ public class HomeController {
     @GetMapping
     public String choixMission(@RequestParam(required = false, defaultValue = "") String idMission) {
         return idMission.isEmpty() ?
-                "Il faut choisir une mission (???)!" :
+                "Accueil mais qui ne sert à rien pour l'instant (rediriger vers choix d'une mission ?)" :
                 "Lancement de la mission, " + idMission + "!";
     }
 }

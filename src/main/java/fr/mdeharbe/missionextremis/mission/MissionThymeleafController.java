@@ -61,7 +61,6 @@ public class MissionThymeleafController {
                         .thenReturn("preparer-mission");
     }
 
-    // exécution d'une mission avec m'équipe actuellement sélectionnée
     @GetMapping(value = {"/preparer-mission/{idMission}", "/preparer-mission"})
     public Mono<String> preparerMission(@PathVariable("idMission") String idMission,
                                   Model model) {
